@@ -66,7 +66,7 @@ pipeline {
                         timeout: 30
                     )
                     if (response.status != 200) {
-                        error("Smoke test against canary deployment faild.")
+                        error("Smoke test against canary deployment failed.")
                     }
                 }
             }
@@ -87,11 +87,11 @@ pipeline {
     }
     post {
         cleanup {
-                kubernetesDeploy(
-                    kubeconfigId: 'kubeconfig',
-                    configs: 'train-schedule-kube-canary.yml',
-                    enableConfigSubstitution: true
-                )
-            }
+            kubernetesDeploy (
+                kubeconfigId: 'kubeconfig',
+                configs: 'train-schedule-kube-canary.yml',
+                enableConfigSubstitution: true
+            )
         }
     }
+}
